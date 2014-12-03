@@ -29,9 +29,9 @@
 	background: #6497D5;
 }
 .container-imgvideo{
-	margin-bottom: 20px;
+	height: 250px;
+	margin-bottom: 30px;
 	margin-right: 70px;
-	height: 270px;
 }
 .container-imgvideo:hover .button-add{
 	display: block;
@@ -69,7 +69,7 @@
 	width: 264px;
 }
 .div-search-name-video{
-	height: 49px;
+	height: 80px;
 	overflow: hidden;
 	width: 203px;
 }
@@ -112,6 +112,7 @@
 	padding: 0px 0px 0px 0px;
 }
 .name-video{
+	height: 36px;
 	overflow: hidden;
 }
 .search{

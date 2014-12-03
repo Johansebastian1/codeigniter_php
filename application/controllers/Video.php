@@ -4,19 +4,19 @@ class video extends CI_controller{
 
 	public function guardar() {
 		
-		if( isset($_COOKIE['locacion']) ){
+		/**if( isset($_COOKIE['locacion']) ){
 		}
 		else{
-			setcookie('locacion', 1);
+			setcookie('locacion', 1);**/
 			
 			$lista =  file_get_contents('php://input');
-			$decode=json_decode($lista,true);
+			$decode=json_decode($lista, true);
 			$videoId = $decode['videoId'];
 			$titulo = $decode['titulo'];
 			$url = $decode['urlimagen'];
 
 			try {
-			    $gbd = new PDO('mysql:host=localhost;dbname=new_schema1', "root", 12345);
+			    $gbd = new PDO('mysql:host=localhost;dbname=new_schema1',"root",12345);
 			    
 			    $sql="insert into lista (id) values(1)";
 
@@ -37,6 +37,6 @@ class video extends CI_controller{
 			    print "¡Error!: " . $e->getMessage() . "<br/>";
 			    die();
 			}
-		}
+		/**}**/
 	}
 }

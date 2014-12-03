@@ -10,15 +10,15 @@ app.controller('searchController', function($scope, $http){
 
 	var indice = null;
 
-	var getKeyboardEventResult = function (keyEvent, keyEventDesc){
-      return keyEventDesc + " (keyCode: " + (window.event ? keyEvent.keyCode : keyEvent.which) + ")";
-    };
-
 	jwplayer("myElement").setup({
         file: "http://www.youtube.com/watch?v=8CjdLYBDUqw",
         height: 198,
         width: 264
     });
+
+    var getKeyboardEventResult = function (keyEvent, keyEventDesc){
+      return keyEventDesc + " (keyCode: " + (window.event ? keyEvent.keyCode : keyEvent.which) + ")";
+    };
 
 
 	//aqui pueden poner cualquier cosa que necesiten inicializar apenas se carga la página
@@ -34,17 +34,8 @@ app.controller('searchController', function($scope, $http){
 		console.log($scope.titulo);
 		console.log($scope.urlimagen);
 
-		$http({ method: 'POST', 
-                url: '/codeigniter_php/video/guardar',
-                headers: {'Content-Type': 'application/json'},
-               data: { 
-                        'videoId': $scope.videoId, 
-                        'titulo': $scope.titulo,
-                        'urlimagen' : $scope.urlimagen 
-                     }
-            	})
-
-
+		$http({method: 'POST', url: '/codeigniter_php/video/guardar', headers: {'Content-Type': 'application/json'},
+               data: { 'videoId': $scope.videoId, 'titulo': $scope.titulo, 'urlimagen' : $scope.urlimagen } })
 	};
 
 	$scope.nextVideo=function(){
@@ -70,6 +61,7 @@ app.controller('searchController', function($scope, $http){
 		for(i=0; i < $scope.list.length; i++){
 			if(codigo==$scope.list[i].id.videoId){
 				$scope.list.splice(i,1);
+				$scope.nextVideo();
 			}
 		}
 	};

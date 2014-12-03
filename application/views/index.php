@@ -85,7 +85,6 @@
 									</div>
 									<div class="div-list-name-video">
 										<h6 class="name-video">{{i.snippet.title}}</h6>
-										<h6>{{i.duration}}</h6>
 									</div>
 								</div>
 							</div>
@@ -111,6 +110,7 @@
 							</div>
 							<div class="div-search-name-video">
 								<h4 class="name-video">{{i.snippet.title}}</h4>
+								<h6>{{i.duration}}</h6>
 							</div>
 						</div>	
 			  		</div>	
