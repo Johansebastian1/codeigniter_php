@@ -26,6 +26,25 @@ app.controller('searchController', function($scope, $http){
 	$scope.add=function(i){
 		console.log("add");
 		$scope.list.push(i);
+
+		$scope.videoId = i.id.videoId;
+		$scope.titulo = i.snippet.title;
+		$scope.urlimagen = i.snippet.thumbnails.default.url;
+		console.log($scope.videoId);
+		console.log($scope.titulo);
+		console.log($scope.urlimagen);
+
+		$http({ method: 'POST', 
+                url: '/codeigniter_php/video/guardar',
+                headers: {'Content-Type': 'application/json'},
+               data: { 
+                        'videoId': $scope.videoId, 
+                        'titulo': $scope.titulo,
+                        'urlimagen' : $scope.urlimagen 
+                     }
+            	})
+
+
 	};
 
 	$scope.nextVideo=function(){
@@ -115,36 +134,6 @@ app.controller('searchController', function($scope, $http){
         	width: 264
     	}).play(true).onComplete($scope.nextVideo);
     	$scope.selection();
-
-    	//$http.post('/codeigniter_php/video/guardar', {lista:$scope.list}).
-		//success(function(data, status, headers, config) {
-		// this callback will be called asynchronously
-		// when the response is available
-		//}).
-		//error(function(data, status, headers, config) {
-		//called asynchronously if an error occurs
-		// or server returns response with an error status.
-		//});
-		
-		var req = {
- 			method: 'POST',
- 			url: '/codeigniter_php/video/guardar',
- 			headers: {'Content-Type': 'application/x-www-form-urlencoded' },
- 			transformRequest: function(obj) {
- 				//esta funcion es usada para convertir de manera adecuada los parámetros via POST
-		        var str = [];
-		        for(var p in obj)
-		        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-		        return str.join("&");
-		    },
- 			data: { lista: JSON.stringify($scope.list) } // se usa el stringify para convertir el arreglo a cadena antes de ser enviado
-		}
-
-		$http(req).success(function(){}).error(function(){});
-
-
-
-
 	};
 });
 

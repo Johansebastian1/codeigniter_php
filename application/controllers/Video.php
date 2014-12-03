@@ -13,17 +13,22 @@ class video extends CI_controller{
 			//$lista = $_REQUEST['lista'];
 			//print_r($lista[0]);
 		//}
-		
+		$videoIdStr =  file_get_contents('php://input');
+		$decode=json_decode($videoIdStr,true);
+
+		echo ($decode['titulo']);//asi
+		//$videoIdStr = $this->input->POST('videoId');
+		print_r($videoIdStr);
 		// se captura el arreglo en formato cadena
-		$listaStr = $this->input->POST('lista');
+		//$listaStr = $this->input->POST('lista');
 
 		//se convierte la cadena a un verdadero arreglo json
-		$lista = json_decode( $listaStr );
+		//$lista = json_decode( $listaStr );
 		
 
 		// como para probar, se devuelve el mismo arreglo json como respuesta
-		header('content-type: application/json');
-		echo json_encode( $lista );
+		//header('content-type: application/json');
+		//echo json_encode( $lista );
 
 		//echo "asd";
 		//enviar los datos a la base de datos
@@ -33,9 +38,7 @@ class video extends CI_controller{
 
 		//print_r(  );
 		
-		for( $i = 0; $i < $lista; $i++){
-			echo "".$i.id;
-		}
+		
 		
 		/**try {
 		    $gbd = new PDO('mysql:host=localhost;dbname=new_schema1', "root", 12345);
