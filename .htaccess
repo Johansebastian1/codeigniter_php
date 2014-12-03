@@ -1,0 +1,6 @@
+RewriteEngine on
+
+RewriteBase /codeigniter_php/
+
+RewriteCond $1 !^(index\.php|img|js|jwplayer|fonts|css|robots\.txt)
+RewriteRule ^(.*)$ index.php/$1 [L]
