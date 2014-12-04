@@ -3,14 +3,16 @@
 class video extends CI_controller{
 
 	public function verificar(){
-		/**if( isset($_COOKIE['locacion']) ){
+		if( isset($_COOKIE['locacion']) ){
+			echo "existo";
 		}
 		else{
 			setcookie('locacion', 1);
-		}**/
+		}
 	}
 
 	public function insertaLista(){
+		verificar();
 		try 
 		{
 			$gbd = new PDO('mysql:host=localhost;dbname=new_schema1',"root",12345);
