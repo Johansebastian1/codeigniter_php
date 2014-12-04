@@ -34,7 +34,7 @@ app.controller('searchController', function($scope, $http){
 		console.log($scope.titulo);
 		console.log($scope.urlimagen);
 
-		$http({method: 'POST', url: '/codeigniter_php/video/guardar', headers: {'Content-Type': 'application/json'},
+		$http({method: 'POST', url: '/codeigniter_php/video/insertarcancion', headers: {'Content-Type': 'application/json'},
                data: { 'videoId': $scope.videoId, 'titulo': $scope.titulo, 'urlimagen' : $scope.urlimagen } })
 	};
 
@@ -64,6 +64,8 @@ app.controller('searchController', function($scope, $http){
 				$scope.nextVideo();
 			}
 		}
+		$http({method: 'POST', url: '/codeigniter_php/video/eliminarcancion', headers: {'Content-Type': 'application/json'},
+               data: { 'videoId': $scope.videoId } })
 	};
 
 	$scope.search = function() {
