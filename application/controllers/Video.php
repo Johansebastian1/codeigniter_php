@@ -8,11 +8,6 @@ class video extends CI_controller{
 			{
 				$gbd = new PDO('mysql:host=localhost;dbname=new_schema1',"root",12345);
 				$sql=" select videoId, title, thumbnails from cancion";
-				/**$results = $gbd->exec($sql);
-				$out = $results->fetch(PDO::FETCH_OBJ);
-				$gbd = null;
-				echo "Busqueda exitosa";
-				print_r($out);**/
 			   	$sth = $gbd->prepare( $sql );
 				$sth->execute();
 				$results = $sth->fetchAll(PDO::FETCH_ASSOC);

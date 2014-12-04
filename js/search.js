@@ -72,7 +72,7 @@ app.controller('searchController', function($scope, $http){
 	$scope.search = function() {
 
 		$http({method: 'POST', url: '/codeigniter_php/video/insertarlista', headers: {'Content-Type': 'application/json'} })
-		
+
 		$("#text").css("display","none");
 		var q = $scope.inputSearch;
 		var request = gapi.client.youtube.search.list({
@@ -138,6 +138,7 @@ app.controller('searchController', function($scope, $http){
 		$http({method: 'POST', url: '/codeigniter_php/video/verificar', headers: {'Content-Type': 'application/json'},
                data: {} }).success(function(data,status){
                	console.log(data);
+               	$scope.list.push(data);
            })
 	}
 });
