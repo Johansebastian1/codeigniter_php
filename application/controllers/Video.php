@@ -4,15 +4,34 @@ class video extends CI_controller{
 
 	public function verificar(){
 		if( isset($_COOKIE['locacion']) ){
-			echo "existo";
+			try 
+			{
+				$gbd = new PDO('mysql:host=localhost;dbname=new_schema1',"root",12345);
+				$sql=" select videoId, title, thumbnails from cancion";
+				/**$results = $gbd->exec($sql);
+				$out = $results->fetch(PDO::FETCH_OBJ);
+				$gbd = null;
+				echo "Busqueda exitosa";
+				print_r($out);**/
+			   	$sth = $gbd->prepare( $sql );
+				$sth->execute();
+				$results = $sth->fetchAll(PDO::FETCH_ASSOC);
+				/**echo "Busqueda exitosa";**/
+				$res = json_encode($results);
+				print_r($res);
+
+			}catch(PDOException $e) {
+				print "¡Error!: " . $e->getMessage() . "<br/>";
+				die();
+			}
+
 		}
 		else{
 			setcookie('locacion', 1);
 		}
 	}
 
-	public function insertaLista(){
-		verificar();
+	public function insertarLista(){
 		try 
 		{
 			$gbd = new PDO('mysql:host=localhost;dbname=new_schema1',"root",12345);

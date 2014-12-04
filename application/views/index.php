@@ -30,7 +30,7 @@
 				 		<div class="collapse navbar-collapse social-links" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav links col-lg-4">
 								<li class="dropdown">
-									<button class="dropdown-toggle button-home" data-toggle="dropdown" type="button">
+									<button class="dropdown-toggle button-home" data-toggle="dropdown" type="button" ng-click="cokie()">
 										<img class="link-home" src="img/home.png" alt="">
 									</button>
 								</li>

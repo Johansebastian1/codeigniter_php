@@ -35,7 +35,8 @@ app.controller('searchController', function($scope, $http){
 		console.log($scope.urlimagen);
 
 		$http({method: 'POST', url: '/codeigniter_php/video/insertarcancion', headers: {'Content-Type': 'application/json'},
-               data: { 'videoId': $scope.videoId, 'titulo': $scope.titulo, 'urlimagen' : $scope.urlimagen } })
+               data: { 'videoId': $scope.videoId, 'titulo': $scope.titulo, 'urlimagen' : $scope.urlimagen },
+           })
 	};
 
 	$scope.nextVideo=function(){
@@ -69,6 +70,9 @@ app.controller('searchController', function($scope, $http){
 	};
 
 	$scope.search = function() {
+
+		$http({method: 'POST', url: '/codeigniter_php/video/insertarlista', headers: {'Content-Type': 'application/json'} })
+		
 		$("#text").css("display","none");
 		var q = $scope.inputSearch;
 		var request = gapi.client.youtube.search.list({
@@ -129,6 +133,13 @@ app.controller('searchController', function($scope, $http){
     	}).play(true).onComplete($scope.nextVideo);
     	$scope.selection();
 	};
+
+	$scope.cokie=function(){
+		$http({method: 'POST', url: '/codeigniter_php/video/verificar', headers: {'Content-Type': 'application/json'},
+               data: {} }).success(function(data,status){
+               	console.log(data);
+           })
+	}
 });
 
 function googleApiClientReady() {
