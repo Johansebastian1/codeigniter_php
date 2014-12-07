@@ -12,6 +12,8 @@ class video extends CI_controller{
 				$sth->execute();
 				$results = $sth->fetchAll(PDO::FETCH_ASSOC);
 				/**echo "Busqueda exitosa";**/
+
+				header('Content-type: application/json');
 				$res = json_encode($results);
 				print_r($res);
 
@@ -20,8 +22,7 @@ class video extends CI_controller{
 				die();
 			}
 
-		}
-		else{
+		} else {
 			setcookie('locacion', 1);
 		}
 	}
@@ -44,6 +45,7 @@ class video extends CI_controller{
 	public function insertarCancion(){
 		$lista =  file_get_contents('php://input');
 		$decode=json_decode($lista, true);
+
 		$videoId = $decode['videoId'];
 		$titulo = $decode['titulo'];
 		$url = $decode['urlimagen'];

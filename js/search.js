@@ -137,10 +137,35 @@ app.controller('searchController', function($scope, $http){
 	$scope.cokie=function(){
 		$http({method: 'POST', url: '/codeigniter_php/video/verificar', headers: {'Content-Type': 'application/json'},
                data: {} }).success(function(data,status){
-               	console.log(data);
-               	$scope.list.push(data);
-           })
+               		console.log(data);
+               		console.log(data[0].videoId);
+
+               		var results = Array();
+
+               		for(i=0; i<data.length; i++) {
+               			var video = data[i];
+               			var r = {};
+               			r.id = {};
+               			r.snippet = {};
+
+               			r.id.videoId = video.videoId;
+
+               			r.snippet.title = video.title;
+               			
+
+               			r.snippet.thumbnails = {};
+               			r.snippet.thumbnails.default = {};
+               			r.snippet.thumbnails.default.url = video.thumbnails;
+
+               			results.push( r );
+
+               		}
+
+
+               		$scope.list = results;
+           		})
 	}
+
 });
 
 function googleApiClientReady() {
